@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:takar_khata/features/dashborad/presentation/screen/dashborad_screen.dart';
+import 'package:takar_khata/core/navigation/bottom_nav_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Takar Khata',
       debugShowCheckedModeBanner: false,
-      home: DashboradScreen(),
+      home: BottomNavScreen(),
     );
   }
 }
