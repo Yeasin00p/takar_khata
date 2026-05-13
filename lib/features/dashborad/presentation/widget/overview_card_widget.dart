@@ -32,13 +32,14 @@ class OverviewCardWidget extends StatelessWidget {
             children: [
               Text(label, style: TextStyle(color: Colors.grey, fontSize: 13)),
               Text(
-                '৳${amount.toStringAsFixed(0)}',
+                '৳ ${amount.toStringAsFixed(0)}',
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
                   color: color,
                 ),
               ),
+              
             ],
           ),
         ],
