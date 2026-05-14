@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:takar_khata/core/database/database_provider.dart';
-import 'package:takar_khata/core/navigation/bottom_nav_screen.dart';
-import 'package:takar_khata/features/raising/presentation/providers/raising_providers.dart';
+
+import 'core/database/database_provider.dart';
+import 'core/navigation/bottom_nav_screen.dart';
+import 'features/market/presentation/providers/market_provider.dart';
+import 'features/raising/presentation/providers/raising_providers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DatabaseProvider.instance.init();
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => RaisingProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => RaisingProvider()),
+        ChangeNotifierProvider(create: (_) => MarketProvider()),
+      ],
       child: const MyApp(),
     ),
   );

@@ -15,7 +15,7 @@ class DbHelper {
   Future<Database> _initDB(String fileName) async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, fileName);
-    return await openDatabase(path, version: 1, onCreate: _createDB);
+    return await openDatabase(path, version: 2, onCreate: _createDB);
   }
 
   Future _createDB(Database db, int version) async {
@@ -36,6 +36,17 @@ class DbHelper {
         date      TEXT NOT NULL,
         created_at TEXT DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (person_id) REFERENCES persons(id) ON DELETE CASCADE
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE market (
+        id        INTEGER PRIMARY KEY AUTOINCREMENT,
+        item      TEXT NOT NULL,
+        cost      REAL NOT NULL,
+        date      TEXT NOT NULL,
+        status    TEXT NOT NULL,
+        created_at TEXT DEFAULT CURRENT_TIMESTAMP
       )
     ''');
   }
