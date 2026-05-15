@@ -18,7 +18,7 @@ class MarketAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: const Text('Market'),
-      backgroundColor: AppTheme.dark,
+      backgroundColor: AppTheme.green,
 
       bottom: TabBar(
         controller: controller,

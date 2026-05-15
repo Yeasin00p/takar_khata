@@ -11,10 +11,10 @@ class MarketTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDue     = market.isDue;
-    final color     = isDue ? AppTheme.red : AppTheme.green;
-    final bgColor   = isDue ? const Color(0xFFFFEBEE) : const Color(0xFFE8F5E9);
-    final provider  = context.read<MarketProvider>();
+    final isDue = market.isDue;
+    final color = isDue ? AppTheme.red : AppTheme.green;
+    final bgColor = isDue ? const Color(0xFFFFEBEE) : const Color(0xFFE8F5E9);
+    final provider = context.read<MarketProvider>();
 
     return Card(
       color: bgColor,
@@ -25,8 +25,10 @@ class MarketTile extends StatelessWidget {
           color: color,
           size: 30,
         ),
-        title: Text(market.item,
-            style: const TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+          market.item,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
         subtitle: Text(DateHelper.format(market.date)),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
@@ -34,17 +36,22 @@ class MarketTile extends StatelessWidget {
             Text(
               '৳${market.cost.toStringAsFixed(0)}',
               style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 15, color: color),
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+                color: color,
+              ),
             ),
             if (isDue)
               IconButton(
-                icon: const Icon(Icons.check_circle_outline,
-                    color: AppTheme.green),
+                icon: const Icon(
+                  Icons.check_circle_outline,
+                  color: AppTheme.green,
+                ),
                 tooltip: 'Mark as paid',
                 onPressed: () => provider.markPaid(market.id!),
               ),
             IconButton(
-              icon: const Icon(Icons.delete_outline, color: Colors.grey),
+              icon: const Icon(Icons.delete_outline, color: AppTheme.green),
               onPressed: () => provider.deleteMarket(market.id!),
             ),
           ],

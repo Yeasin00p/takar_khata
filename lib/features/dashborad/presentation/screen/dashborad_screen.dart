@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:takar_khata/features/dashborad/presentation/widget/overview_card_widget.dart';
 
+import '../../../market/presentation/providers/market_provider.dart';
 import '../../../raising/presentation/providers/raising_providers.dart';
 
 class DashboradScreen extends StatelessWidget {
@@ -10,6 +11,7 @@ class DashboradScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final raising = context.watch<RaisingProvider>();
+    final market = context.watch<MarketProvider>();
 
     return Scaffold(
       appBar: AppBar(
@@ -26,24 +28,24 @@ class DashboradScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           OverviewCardWidget(
-            label: 'Total Raised',
-            amount: 300,
+            label: 'Total paid',
+            amount: market.totalPaid,
             color: Colors.blue,
             icon: Icons.check_circle,
           ),
           const SizedBox(height: 10),
 
           OverviewCardWidget(
-            label: 'Total Raised',
-            amount: 300,
+            label: 'Total Due',
+            amount: market.totalDue,
             color: Colors.red,
             icon: Icons.warning_amber_rounded,
           ),
           const SizedBox(height: 10),
 
           OverviewCardWidget(
-            label: 'Total Raised',
-            amount: 500,
+            label: 'Balance',
+            amount: market.balance,
             color: Colors.purple,
             icon: Icons.account_balance_wallet,
           ),

@@ -11,7 +11,7 @@ class MarketFab extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
       onPressed: onTap,
-      backgroundColor: AppTheme.dark,
+      backgroundColor: AppTheme.green,
 
       icon: const Icon(Icons.add, color: Colors.white),
 
