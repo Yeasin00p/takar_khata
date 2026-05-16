@@ -13,6 +13,7 @@ class RaisingAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: const Text('Raisings'),
+      centerTitle: true,
       backgroundColor: AppTheme.green,
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(36),

@@ -17,6 +17,7 @@ class DashboradScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Dashboard', style: TextStyle(fontWeight: FontWeight.bold)),
+        centerTitle: true,
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),

@@ -24,8 +24,8 @@ class AddPaymentSheet extends StatefulWidget {
 }
 
 class _AddPaymentSheetState extends State<AddPaymentSheet> {
-  final _nameCtrl   = TextEditingController();
-  final _floorCtrl  = TextEditingController();
+  final _nameCtrl = TextEditingController();
+  final _floorCtrl = TextEditingController();
   final _amountCtrl = TextEditingController();
   late String _date;
 
@@ -44,9 +44,7 @@ class _AddPaymentSheetState extends State<AddPaymentSheet> {
   }
 
   bool get _isValid =>
-      _nameCtrl.text.trim().isNotEmpty &&
-      _floorCtrl.text.trim().isNotEmpty &&
-      _amountCtrl.text.trim().isNotEmpty;
+      _nameCtrl.text.trim().isNotEmpty && _amountCtrl.text.trim().isNotEmpty;
 
   Future<void> _pickDate() async {
     final picked = await showDatePicker(
@@ -63,10 +61,12 @@ class _AddPaymentSheetState extends State<AddPaymentSheet> {
   Future<void> _save() async {
     if (!_isValid) return;
     await context.read<RaisingProvider>().addPayment(
-      name:   _nameCtrl.text.trim(),
-      floor:  _floorCtrl.text.trim(),
+      name: _nameCtrl.text.trim(),
+      floor: _floorCtrl.text.trim().isEmpty
+          ? 'Unknown Floor'
+          : _floorCtrl.text.trim(),
       amount: double.tryParse(_amountCtrl.text) ?? 0,
-      date:   _date,
+      date: _date,
     );
     if (mounted) Navigator.pop(context);
   }
@@ -106,7 +106,7 @@ class _AddPaymentSheetState extends State<AddPaymentSheet> {
           TextField(
             controller: _floorCtrl,
             decoration: const InputDecoration(
-              labelText: 'Floor (e.g. 3rd)',
+              labelText: 'Floor (e.g. 3rd) — optional',
               border: OutlineInputBorder(),
             ),
           ),
@@ -140,7 +140,6 @@ class _AddPaymentSheetState extends State<AddPaymentSheet> {
   }
 }
 
-// ── private helper widget so the sheet stays readable
 class _DatePickerTile extends StatelessWidget {
   const _DatePickerTile({required this.date, required this.onTap});
 
