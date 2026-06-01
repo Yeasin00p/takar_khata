@@ -114,29 +114,6 @@ money_manager/
 │   │
 │   └── main.dart                           ← MultiProvider, navigation
 │
-├── test/                                   ← mirrors lib/ structure exactly
-│   ├── core/
-│   │   └── database/
-│   │       └── daos/
-│   │           ├── person_dao_test.dart
-│   │           ├── payment_dao_test.dart
-│   │           └── market_dao_test.dart
-│   └── features/
-│       ├── raising/
-│       │   ├── data/repositories/
-│       │   │   └── raising_repository_test.dart
-│       │   ├── domain/usecases/
-│       │   │   └── raising_usecases_test.dart
-│       │   └── presentation/providers/
-│       │       └── raising_provider_test.dart
-│       └── market/
-│           ├── data/repositories/
-│           │   └── market_repository_test.dart
-│           ├── domain/usecases/
-│           │   └── market_usecases_test.dart
-│           └── presentation/providers/
-│               └── market_provider_test.dart
-│
 ├── pubspec.yaml
 └── README.md
 ```
@@ -231,24 +208,6 @@ flutter test test/features/raising/
 # Run tests with coverage
 flutter test --coverage
 ```
-
-### Test strategy
-
-| Test file | Type | Uses |
-|-----------|------|------|
-| `person_dao_test` | Integration | Real SQLite in-memory |
-| `payment_dao_test` | Integration | Real SQLite in-memory |
-| `market_dao_test` | Integration | Real SQLite in-memory |
-| `raising_repository_test` | Unit | Mock `PersonDao` + `PaymentDao` |
-| `market_repository_test` | Unit | Mock `MarketDao` |
-| `raising_usecases_test` | Unit | Mock `RaisingRepository` |
-| `market_usecases_test` | Unit | Mock `MarketRepository` |
-| `raising_provider_test` | Unit | Mock usecases |
-| `market_provider_test` | Unit | Mock usecases |
-
-DAO tests use `sqflite_common_ffi` to run real SQLite in memory on your computer without needing a device. All other tests use `mockito` generated mocks so each layer is tested in complete isolation.
-
----
 
 ## Currency
 
